@@ -39,6 +39,7 @@ exports.put = function (req, res, next) {
 
     let booking = req.booking;
 
+
     let update = req.body;
 
     _.merge(booking, update);

@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var config = require('../config/config');
 var checkToken = expressJwt({ secret: config.secrets.jwt });
-var Corporation = require('../api/user/user_Model');
+var Corporation = require('../api/corporation_user/corporation_user_Model');
 
 exports.decodeToken = function() {
   return function(req, res, next) {

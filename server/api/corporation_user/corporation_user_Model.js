@@ -105,4 +105,4 @@ CorporationUserSchema.methods = {
 };
 
 
-module.exports = mongoose.model('users', CorporationUserSchema);
+module.exports = mongoose.model('corporation_users', CorporationUserSchema);

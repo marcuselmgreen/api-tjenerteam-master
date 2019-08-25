@@ -1,10 +1,10 @@
-var user = require('./user_Model');
+var corporation_user = require('./corporation_user_Model');
 var _ = require('lodash');
 var signToken = require('../../auth/auth').signToken;
 
 exports.params = function (req, res, next, id) {
 
-    user.findById(id)
+    corporation_user.findById(id)
         .select('-password')
         .exec()
         .then(function (user) {
@@ -21,7 +21,7 @@ exports.params = function (req, res, next, id) {
 
 exports.get = function (req, res, next) {
 
-    user.find({})
+    corporation_user.find({})
         .select('-password')
         .exec()
         .then(function (users) {
@@ -58,9 +58,7 @@ exports.put = function (req, res, next) {
 
 exports.post = function (req, res, next) {
 
-    var newUser = new user(req.body);
-
-    console.log(newUser);
+    var newUser = new corporation_user(req.body);
 
     newUser.save(function (err, user) {
         if (err) { return next(err); }

@@ -1,4 +1,4 @@
-var User = require('../api/user/user_Model');
+var User = require('../api/corporation_user/corporation_user_Model');
 var signToken = require('./auth').signToken;
 
 exports.signin = function(req, res, next) {

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('./user_Controller');
+const controller = require('./employee_user_Controller');
 const auth = require('../../auth/auth');
 
 let checkUser = [auth.decodeToken(), auth.getFreshUser()];
