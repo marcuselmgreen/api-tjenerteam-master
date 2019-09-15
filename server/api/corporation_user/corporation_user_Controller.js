@@ -42,7 +42,6 @@ exports.getOne = function (req, res, next) {
 exports.put = function (req, res, next) {
 
     var user = req.user;
-
     var update = req.body;
 
     _.merge(user, update);

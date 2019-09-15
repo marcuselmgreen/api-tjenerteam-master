@@ -4,6 +4,11 @@ const bcrypt = require('bcrypt');
 
 const EmployeeUserSchema = new Schema({
 
+    userExists: {
+        type: Boolean,
+        required: true
+    },
+
     facebookId: {
         type: String,
         required: true

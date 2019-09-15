@@ -75,7 +75,6 @@ exports.post = function (req, res, next) {
                     if (tempUser) {
                         newUser = {
                             user: tempUser,
-                            exist: true,
                             jwt: signToken(tempUser._id)
                         };
                         res.json(newUser);
@@ -89,7 +88,6 @@ exports.post = function (req, res, next) {
 
                                 let newUser = {
                                     user: user,
-                                    exist: false,
                                     jwt: signToken(user._id)
                                 };
                                 res.json(newUser);
@@ -131,6 +129,7 @@ function fillUserInformation(fbUserInfo) {
     let user = {};
     if (fbUserInfo) {
         user = {
+            userExists: false,
             facebookId: fbUserInfo.id,
             name: fbUserInfo.name,
             email: fbUserInfo.email,
