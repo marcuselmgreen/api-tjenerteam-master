@@ -13,7 +13,16 @@ router.route('/')
 
 router.route('/:id')
     .get(controller.getOne)
-    .put(checkUser, controller.put)
+    //.put(checkUser, controller.put)
+    /*
+    Da den ikke kunne finde /changePassword routen så har jeg prøvet med denne route,
+    men det ser ikke ud til at den bruger metoden changePassword
+    */
+    .put(controller.changePassword)
     .delete(checkUser, controller.delete);
+
+//Når jeg prøver at bruge denne route så giver den mig en 404 fejl
+router.route('/changePassword/:id')
+    .put(controller.changePassword);
 
 module.exports = router;
