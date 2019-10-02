@@ -29,12 +29,12 @@ exports.changePassword = function (req, res) {
             if (!user) {
                 next(new Error('No staff_user with that id'));
             } else {
-                user.comparePassword('1234', function(err, isMatch) {
+                /*user.comparePassword('1234', function(err, isMatch) {
                     if (err) throw err;
                     console.log('1234:', isMatch);
                     req.user = user;
                     next();
-                });
+                });*/
             }
         }, function (err) {
             next(err);
