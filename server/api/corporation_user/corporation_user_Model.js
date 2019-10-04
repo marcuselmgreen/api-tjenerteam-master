@@ -99,14 +99,14 @@ CorporationUserSchema.methods = {
         var obj = this.toObject();
         delete obj.password;
         return obj;
-    }
+    },
     //Har prøvet med en comparepassword metode
-    /*comparePassword = function(candidatePassword, cb) {
-        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-            if (err) return cb(err);
-            cb(null, isMatch);
+    comparePassword: function(candidatePassword) {
+        bcrypt.compare(candidatePassword, this.password, function(err) {
+            if (err) return err;
+            return '';
         });
-    }*/
+    }
 };
 
 

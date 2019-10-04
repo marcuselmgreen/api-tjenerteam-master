@@ -21,25 +21,46 @@ exports.params = function (req, res, next, id) {
 
 //Har prøvet at lave min egen metode til at checke password og sende til db
 //Men den kan ikke bruge metoden af en eller anden grund
-/*exports.changePassword = function (req, res) {
+exports.changePassword = function (req, res, next) {
     corporation_user.findById("1231241")
+    let id = req.user.id;
+
+    let oldPassword = req.body.user.oldPassword;
+    let newPassword = req.body.user.newPassword;
+
+    console.log('oldPassword ' + oldPassword);
+    console.log('newPassword ' + newPassword);
+
+    corporation_user.findById(id)
         .select('-password')
         .exec()
         .then(function (user) {
             if (!user) {
                 next(new Error('No staff_user with that id'));
             } else {
-                /*user.comparePassword('1234', function(err, isMatch) {
-                    if (err) throw err;
-                    console.log('1234:', isMatch);
-                    req.user = user;
-                    next();
-                });
+                user.comparePassword(function (err, oldPassword) {
+                    if (err) {
+                        next(err);
+                    } else {
+                        user.password = newPassword;
+                        var update = req.body;
+
+                        _.merge(user, update);
+
+                        user.save(function (err, saved) {
+                            if (err) {
+                                next(err);
+                            } else {
+                                res.json(saved.toJson());
+                            }
+                        })
+                    }
+                })
             }
         }, function (err) {
             next(err);
         });
-};*/
+};
 
 exports.get = function (req, res, next) {
 

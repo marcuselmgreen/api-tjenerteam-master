@@ -23,8 +23,7 @@ router.route('/:id')
     .delete(checkUser, controller.delete);
 
 //Når jeg prøver at bruge denne route så giver den mig en 404 fejl
-/*router.route('/changePassword/:id')
-
-    .put(controller.changePassword);*/
+router.route('/changePassword/:id')
+    .put(checkUser, controller.changePassword);
 
 module.exports = router;
