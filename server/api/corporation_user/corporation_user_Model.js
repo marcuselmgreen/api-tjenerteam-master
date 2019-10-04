@@ -40,8 +40,7 @@ const CorporationUserSchema = new Schema({
     },
 
     department: {
-        type: String,
-        required: true
+        type: String
     },
 
     email: {
@@ -61,8 +60,7 @@ const CorporationUserSchema = new Schema({
     },
 
     ean: {
-        type: String,
-        required: true
+        type: String
     },
 
     gdpr: {

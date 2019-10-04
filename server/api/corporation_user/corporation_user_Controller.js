@@ -21,7 +21,7 @@ exports.params = function (req, res, next, id) {
 
 //Har prøvet at lave min egen metode til at checke password og sende til db
 //Men den kan ikke bruge metoden af en eller anden grund
-exports.changePassword = function (req, res) {
+/*exports.changePassword = function (req, res) {
     corporation_user.findById("1231241")
         .select('-password')
         .exec()
@@ -34,12 +34,12 @@ exports.changePassword = function (req, res) {
                     console.log('1234:', isMatch);
                     req.user = user;
                     next();
-                });*/
+                });
             }
         }, function (err) {
             next(err);
         });
-};
+};*/
 
 exports.get = function (req, res, next) {
 
