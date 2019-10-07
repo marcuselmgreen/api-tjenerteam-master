@@ -19,17 +19,11 @@ exports.params = function (req, res, next, id) {
         });
 };
 
-//Har prøvet at lave min egen metode til at checke password og sende til db
-//Men den kan ikke bruge metoden af en eller anden grund
 exports.changePassword = function (req, res, next) {
-    corporation_user.findById("1231241")
     let id = req.user.id;
 
     let oldPassword = req.body.user.oldPassword;
     let newPassword = req.body.user.newPassword;
-
-    console.log('oldPassword ' + oldPassword);
-    console.log('newPassword ' + newPassword);
 
     corporation_user.findById(id)
         .select('-password')
@@ -38,24 +32,22 @@ exports.changePassword = function (req, res, next) {
             if (!user) {
                 next(new Error('No staff_user with that id'));
             } else {
-                user.comparePassword(function (err, oldPassword) {
-                    if (err) {
-                        next(err);
-                    } else {
-                        user.password = newPassword;
-                        var update = req.body;
+                if (user.comparePassword(oldPassword, req.user.password)) {
+                    var user = req.user;
+                    user.password = newPassword;
+                    var update = req.body;
 
-                        _.merge(user, update);
-
-                        user.save(function (err, saved) {
-                            if (err) {
-                                next(err);
-                            } else {
-                                res.json(saved.toJson());
-                            }
-                        })
-                    }
-                })
+                    _.merge(user, update);
+                    user.save(function (err, saved) {
+                        if (err) {
+                            next(err);
+                        } else {
+                            res.json(saved.toJson());
+                        }
+                    })
+                } else {
+                    next(new Error('Old password is incorrect'));
+                }
             }
         }, function (err) {
             next(err);

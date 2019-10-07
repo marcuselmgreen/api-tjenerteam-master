@@ -100,12 +100,9 @@ CorporationUserSchema.methods = {
         delete obj.password;
         return obj;
     },
-    //Har prøvet med en comparepassword metode
-    comparePassword: function(candidatePassword) {
-        bcrypt.compare(candidatePassword, this.password, function(err) {
-            if (err) return err;
-            return '';
-        });
+
+    comparePassword: function(plaintext, currentPassword) {
+        return bcrypt.compareSync(plaintext, currentPassword);
     }
 };
 
